@@ -22,6 +22,13 @@ end
 
 gem 'jquery-rails'
 
+
+gem 'rype', '>=0.0.4'
+
+gem 'ruby-dbus'
+
+gem 'delayed_job'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
