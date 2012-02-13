@@ -7,6 +7,7 @@ gem 'rails', '3.2.1'
 
 gem 'sqlite3'
 
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,12 +23,15 @@ end
 
 gem 'jquery-rails'
 
-
 gem 'rype', '>=0.0.4'
 
 gem 'ruby-dbus'
 
 gem 'delayed_job'
+
+gem 'delayed_job_active_record'
+
+gem 'haml-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -43,3 +47,6 @@ gem 'delayed_job'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+group :development, :test do
+      gem "rspec-rails", "~> 2.0"
+end
