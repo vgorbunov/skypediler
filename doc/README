@@ -1,0 +1,17 @@
+1.Installation
+
+ - Install Skype for Linux.
+ - Configure Skype account.
+
+3. Testing
+ - Skype account should be online.
+ - run 'bundle exec rake db:migrate RAILS_ENV=test'
+ - run 'script/rspec'
+
+2.Launching 
+ - run 'bundle exec rake db:migrate RAILS_ENV=production'
+ - run 'script/delayed_job start'
+ - run 'bundle exec rails server RAILS_ENV=production'
+
+ 
+

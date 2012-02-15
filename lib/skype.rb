@@ -70,9 +70,24 @@ class Skype
       self.hangup call_id
     end
     @api.on_notification("CALL (.*) STATUS ONHOLD") do |call_id|
-      log "In progress #{call_id}"
+      log "On hold #{call_id}"
       self.hangup call_id
     end
+    @api.on_notification("CALL (.*) STATUS BUSY") do |call_id|
+      log "Busy #{call_id}"
+      self.hangup call_id
+    end
+
+     @api.on_notification("CALL (.*) STATUS REFUSED") do |call_id|
+      log "Refused #{call_id}"
+      self.hangup call_id
+    end
+
+     @api.on_notification("CALL (.*) STATUS MISSED") do |call_id|
+      log "Missed #{call_id}"
+      self.hangup call_id
+    end
+
     @api.on_notification("APPLICATION #{NAME} CONNECTING (\.*)") do |users|
       log "Connecting  #{users.to_s}"
        @connecting_block.call(users.split(" ")) if @connecting_block != nil && users != nil 
