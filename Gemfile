@@ -31,6 +31,8 @@ gem 'delayed_job'
 
 gem 'delayed_job_active_record'
 
+gem 'daemons'
+
 gem 'haml-rails'
 
 # To use ActiveModel has_secure_password
