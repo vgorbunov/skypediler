@@ -1,0 +1,30 @@
+#!/bin/bash
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+rvm use 1.9.2
+PORT=$1
+echo $PORT
+#killall -9 skype
+DISPLAY=:2
+sleep 2
+if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+    ## if not found, launch a new one
+    eval `dbus-launch --sh-syntax --exit-with-session`
+    echo "D-Bus per-session daemon address is: $DBUS_SESSION_BUS_ADDRESS"
+fi
+if [ -f "$HOME/start_skype_$PORT.sh" ]
+then
+echo "Starting custom Skype script"
+xvfb-run --auto-servernum --server-num=1 $HOME/start_skype_$PORT.sh & 
+else
+echo "Skype not found"
+skype
+fi
+read -t10 -n1 -r -p "Press any key if Skype is ready or wait a moment..." key
+echo ""
+
+script/rspec
+
+RAILS_ENV=development$PORT script/delayed_job -i $PORT restart
+
+bundle exec rails server -p $PORT -e development$PORT
+

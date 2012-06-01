@@ -170,7 +170,7 @@ class Skype
 end
 
 class CallSkypeJob < Struct.new(:phone_number)
-  TIMEOUT = 60
+  TIMEOUT = 30
   def perform
     Rails::logger.info "Perform call job for #{phone_number}"
     Skype.instance.call phone_number;
